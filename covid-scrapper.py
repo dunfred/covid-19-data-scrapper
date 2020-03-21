@@ -1,3 +1,6 @@
+# author: Dunfred
+# date:   21-03-2020
+
 import requests, json
 from bs4 import BeautifulSoup as bs
 from selenium import webdriver
@@ -7,8 +10,8 @@ from selenium.webdriver import ChromeOptions
 try:
     contents = requests.get("https://bing.com/covid/data?ref=vc.ru&IG=B8BBA10E63BE4F24BC571A5EFC8A79C4").content
     data = json.loads(contents)
-    [print(i) for i in data["areas"]]
-    
+    [print(f'Country: {i["country"]} \ntotalConfirmed: {i["totalConfirmed"]} \ntotalDeaths: {i["totalDeaths"]} \ntotalRecovered: {i["totalRecovered"]}\n\n') for i in data["areas"]]
+
 except Exception:
     chome_options = ChromeOptions()
     chome_options.add_argument("--headless")
