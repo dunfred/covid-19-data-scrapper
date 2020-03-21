@@ -10,9 +10,11 @@ from selenium.webdriver import ChromeOptions
 try:
     contents = requests.get("https://bing.com/covid/data?ref=vc.ru&IG=B8BBA10E63BE4F24BC571A5EFC8A79C4").content
     data = json.loads(contents)
+    print(f'totalConfirmed: {data["totalConfirmed"]}, totalDeaths: {data["totalDeaths"]}, totalRecovered: {data["totalRecovered"]}\n')
     [print(f'Country: {i["country"]} \ntotalConfirmed: {i["totalConfirmed"]} \ntotalDeaths: {i["totalDeaths"]} \ntotalRecovered: {i["totalRecovered"]}\n\n') for i in data["areas"]]
 
-except Exception:
+except Exception as e:
+    print(e)
     chome_options = ChromeOptions()
     chome_options.add_argument("--headless")
 
